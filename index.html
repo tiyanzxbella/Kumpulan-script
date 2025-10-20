@@ -249,13 +249,10 @@
             position: relative;
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto auto;
+            grid-template-rows: auto auto auto auto;
             grid-template-areas: 
                 "header"
-                "intro"
-                "community"
-                "scripts"
-                "share"
+                "content"
                 "footer";
             gap: 20px;
         }
@@ -302,102 +299,24 @@
         
         .content {
             padding: 40px;
-            display: contents;
+            grid-area: content;
         }
         
-        .intro {
-            text-align: center;
-            margin-bottom: 40px;
-            line-height: 1.6;
-            font-size: 1.2rem;
-            grid-area: intro;
-            padding: 0 40px;
+        /* Tab Content */
+        .tab-content {
+            display: none;
         }
         
-        .community-section {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 0 40px;
-            text-align: center;
-            grid-area: community;
+        .tab-content.active {
+            display: block;
         }
         
-        .community-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .community-title i {
-            margin-right: 15px;
-        }
-        
-        .community-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
-        }
-        
-        .community-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        
-        .community-card:hover {
-            transform: translateY(-8px);
-        }
-        
-        .community-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .community-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-        }
-        
-        .community-card p {
-            margin-bottom: 20px;
-            color: var(--text-color);
-            opacity: 0.8;
-            font-size: 1rem;
-        }
-        
-        .community-btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-        
-        .community-btn:hover {
-            background: var(--accent-color);
-            transform: scale(1.05);
-        }
-        
+        /* Script Bot Content */
         .script-list {
             display: grid;
             grid-template-columns: 1fr;
             gap: 30px;
-            padding: 0 40px;
-            grid-area: scripts;
+            padding: 0;
         }
         
         .script-row {
@@ -496,24 +415,89 @@
             margin-right: 10px;
         }
         
-        footer {
+        /* Community Content */
+        .community-section {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
             text-align: center;
+        }
+        
+        .community-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .community-title i {
+            margin-right: 15px;
+        }
+        
+        .community-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .community-card {
+            background: var(--card-bg);
+            border-radius: 12px;
             padding: 25px;
-            background-color: var(--footer-bg);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+        
+        .community-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .community-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .community-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+        }
+        
+        .community-card p {
+            margin-bottom: 20px;
             color: var(--text-color);
             opacity: 0.8;
             font-size: 1rem;
-            grid-area: footer;
-            border-radius: 0 0 15px 15px;
         }
         
+        .community-btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .community-btn:hover {
+            background: var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        /* Share Content */
         .share-section {
             text-align: center;
             padding: 30px;
             background: var(--card-bg);
             border-radius: 15px;
-            margin: 0 40px;
-            grid-area: share;
         }
         
         .share-title {
@@ -542,6 +526,17 @@
         
         .share-btn:hover {
             background: var(--accent-color);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--footer-bg);
+            color: var(--text-color);
+            opacity: 0.8;
+            font-size: 1rem;
+            grid-area: footer;
+            border-radius: 0 0 15px 15px;
         }
 
         /* Loading Animation */
@@ -578,99 +573,12 @@
         }
 
         /* ==================== MEDIA QUERIES ==================== */
-        @media (min-width: 1024px) {
-            .container {
-                margin: 30px auto;
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto auto auto;
-                grid-template-areas: 
-                    "header header"
-                    "intro intro"
-                    "community scripts"
-                    "share footer";
-                gap: 30px;
-            }
-            
-            .community-section {
-                margin: 0 20px 0 40px;
-            }
-            
-            .script-list {
-                margin: 0 40px 0 20px;
-                padding: 0;
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .share-section {
-                margin: 0 20px 0 40px;
-            }
-            
-            footer {
-                margin: 0 40px 0 20px;
-                border-radius: 15px;
-            }
-            
-            .community-links {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            .container {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto auto auto;
-                grid-template-areas: 
-                    "header header"
-                    "intro intro"
-                    "community scripts"
-                    "share footer";
-            }
-            
-            .script-list {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .community-section {
-                margin: 0 20px 0 40px;
-            }
-            
-            .script-list {
-                margin: 0 40px 0 20px;
-            }
-            
-            .share-section {
-                margin: 0 40px 0 20px;
-            }
-            
-            footer {
-                margin: 0 20px 0 40px;
-                border-radius: 15px;
-            }
-        }
-        
-        @media (max-width: 1023px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-areas: 
-                    "header"
-                    "intro"
-                    "community"
-                    "scripts"
-                    "share"
-                    "footer";
-            }
-            
-            .script-list {
-                grid-template-columns: 1fr;
-            }
-            
+        @media (max-width: 1024px) {
             .script-row {
                 grid-template-columns: 1fr;
             }
         }
-
+        
         @media (max-width: 768px) {
             .sidebar {
                 width: 250px;
@@ -714,10 +622,6 @@
             .community-links {
                 grid-template-columns: 1fr;
             }
-            
-            .script-row {
-                grid-template-columns: 1fr;
-            }
         }
         
         @media (max-width: 600px) {
@@ -739,11 +643,11 @@
             }
             
             .community-section, .share-section {
-                margin: 0 20px;
+                margin: 0;
             }
             
             .script-list {
-                padding: 0 20px;
+                padding: 0;
             }
         }
     </style>
@@ -773,10 +677,9 @@
             <p>Koleksi Script Bot WhatsApp</p>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="#" class="active"><i class="fas fa-home"></i> Beranda</a></li>
-            <li><a href="#scripts"><i class="fas fa-code"></i> Script Bot</a></li>
-            <li><a href="#community"><i class="fas fa-users"></i> Komunitas</a></li>
-            <li><a href="#share"><i class="fas fa-share-alt"></i> Bagikan</a></li>
+            <li><a href="#script-bot" class="active tab-link" data-tab="script-bot"><i class="fas fa-code"></i> Script Bot</a></li>
+            <li><a href="#community" class="tab-link" data-tab="community"><i class="fas fa-users"></i> Komunitas</a></li>
+            <li><a href="#share" class="tab-link" data-tab="share"><i class="fas fa-share-alt"></i> Bagikan</a></li>
             <li><a href="https://github.com/tiyanzxbella/" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
             <li><a href="https://youtube.com/@septiyandaputra3957" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
             <li><a href="https://instagram.com/septiyanda_putra" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
@@ -811,117 +714,122 @@
             </header>
             
             <div class="content">
-                <div class="intro">
-                    <p>Kumpulan script bot WhatsApp terbaik untuk berbagai kebutuhan. Semua script sudah diuji dan siap digunakan.</p>
-                </div>
-                
-                <div class="community-section" id="community">
-                    <h2 class="community-title"><i class="fas fa-users"></i> Bergabung dengan Komunitas</h2>
-                    <p>Dapatkan informasi terbaru tentang update script, tutorial, dan bantuan dari komunitas</p>
-                    
-                    <div class="community-links">
-                        <div class="community-card">
-                            <div class="community-icon">
-                                <i class="fab fa-whatsapp"></i>
+                <!-- Script Bot Section -->
+                <div class="tab-content active" id="script-bot">
+                    <div class="script-list">
+                        <!-- Baris 1: Telegram Bot (kiri) dan Bella AI (kanan) -->
+                        <div class="script-row">
+                            <div class="script-card">
+                                <h2 class="script-title"><i class="fab fa-telegram"></i> Script Base Telegram Bot</h2>
+                                <p class="script-description">Base script untuk membuat bot Telegram yang dapat diintegrasikan dengan WhatsApp.</p>
+                                <div class="script-features">
+                                    <ul class="feature-list">
+                                        <li>Base untuk pengembangan bot Telegram</li>
+                                        <li>Integrasi dengan WhatsApp</li>
+                                        <li>Struktur kode yang terorganisir</li>
+                                    </ul>
+                                </div>
+                                <a href="https://sfile.mobi/8u3cFlKpGMZ" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Base Telegram Bot</a>
                             </div>
-                            <h3>Channel WhatsApp</h3>
-                            <p>Update script terbaru dan informasi penting</p>
-                            <a href="https://whatsapp.com/channel/0029VbBNmBPISTkPhc6Kay3B" class="community-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Join Channel
-                            </a>
+                            
+                            <div class="script-card">
+                                <h2 class="script-title"><i class="fas fa-robot"></i> Script Bot Bella AI</h2>
+                                <p class="script-description">Bot WhatsApp canggih dengan kecerdasan buatan untuk berbagai keperluan otomatisasi.</p>
+                                <div class="script-features">
+                                    <ul class="feature-list">
+                                        <li>Support VPS, Panel, dan Termux</li>
+                                        <li>Fitur AI untuk respon cerdas</li>
+                                        <li>Multi-fungsi dan mudah dikustomisasi</li>
+                                    </ul>
+                                </div>
+                                <a href="https://sfile.mobi/30f9DoV8EM4" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Bella AI</a>
+                            </div>
                         </div>
                         
-                        <div class="community-card">
-                            <div class="community-icon">
-                                <i class="fas fa-comments"></i>
+                        <!-- Baris 2: Hitori MD (kiri) dan Neoxr Bot (kanan) -->
+                        <div class="script-row">
+                            <div class="script-card">
+                                <h2 class="script-title"><i class="fas fa-code"></i> Script Bot WhatsApp Hitori MD</h2>
+                                <p class="script-description">Bot WhatsApp multifungsi dengan fitur lengkap untuk kebutuhan sehari-hari.</p>
+                                <div class="script-features">
+                                    <ul class="feature-list">
+                                        <li>Fitur lengkap dan update terbaru</li>
+                                        <li>Support berbagai platform</li>
+                                        <li>Dokumentasi lengkap</li>
+                                    </ul>
+                                </div>
+                                <a href="https://sfile.mobi/8XBcW0YawEa" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Hitori MD</a>
                             </div>
-                            <h3>Grup WhatsApp</h3>
-                            <p>Diskusi dan bantuan penggunaan script</p>
-                            <a href="https://chat.whatsapp.com/EcsB9NO95JmIZr8RrQ2heD" class="community-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Join Grup
-                            </a>
-                        </div>
-                        
-                        <div class="community-card">
-                            <div class="community-icon">
-                                <i class="fab fa-youtube"></i>
+                            
+                            <div class="script-card">
+                                <h2 class="script-title"><i class="fas fa-star"></i> Script Bot Neoxr Bot WhatsApp</h2>
+                                <p class="script-description">Bot WhatsApp dengan performa tinggi dan fitur modern untuk pengalaman terbaik.</p>
+                                <div class="script-features">
+                                    <ul class="feature-list">
+                                        <li>Performa tinggi dan stabil</li>
+                                        <li>Fitur modern dan update berkala</li>
+                                        <li>Dukungan komunitas aktif</li>
+                                    </ul>
+                                </div>
+                                <a href="https://sfile.mobi/8IPcOo1k2cc" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Neoxr Bot</a>
                             </div>
-                            <h3>YouTube Channel</h3>
-                            <p>Tutorial dan demo penggunaan script</p>
-                            <a href="https://youtube.com/@septiyandaputra3957" class="community-btn" target="_blank">
-                                <i class="fas fa-external-link-alt"></i> Subscribe
-                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="script-list" id="scripts">
-                    <!-- Baris 1: Telegram Bot (kiri) dan Bella AI (kanan) -->
-                    <div class="script-row">
-                        <div class="script-card">
-                            <h2 class="script-title"><i class="fab fa-telegram"></i> Script Base Telegram Bot</h2>
-                            <p class="script-description">Base script untuk membuat bot Telegram yang dapat diintegrasikan dengan WhatsApp.</p>
-                            <div class="script-features">
-                                <ul class="feature-list">
-                                    <li>Base untuk pengembangan bot Telegram</li>
-                                    <li>Integrasi dengan WhatsApp</li>
-                                    <li>Struktur kode yang terorganisir</li>
-                                </ul>
-                            </div>
-                            <a href="https://sfile.mobi/8u3cFlKpGMZ" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Base Telegram Bot</a>
-                        </div>
+                <!-- Community Section -->
+                <div class="tab-content" id="community">
+                    <div class="community-section">
+                        <h2 class="community-title"><i class="fas fa-users"></i> Bergabung dengan Komunitas</h2>
+                        <p>Dapatkan informasi terbaru tentang update script, tutorial, dan bantuan dari komunitas</p>
                         
-                        <div class="script-card">
-                            <h2 class="script-title"><i class="fas fa-robot"></i> Script Bot Bella AI</h2>
-                            <p class="script-description">Bot WhatsApp canggih dengan kecerdasan buatan untuk berbagai keperluan otomatisasi.</p>
-                            <div class="script-features">
-                                <ul class="feature-list">
-                                    <li>Support VPS, Panel, dan Termux</li>
-                                    <li>Fitur AI untuk respon cerdas</li>
-                                    <li>Multi-fungsi dan mudah dikustomisasi</li>
-                                </ul>
+                        <div class="community-links">
+                            <div class="community-card">
+                                <div class="community-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <h3>Channel WhatsApp</h3>
+                                <p>Update script terbaru dan informasi penting</p>
+                                <a href="https://whatsapp.com/channel/0029VbBNmBPISTkPhc6Kay3B" class="community-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Join Channel
+                                </a>
                             </div>
-                            <a href="https://sfile.mobi/30f9DoV8EM4" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Bella AI</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Baris 2: Hitori MD (kiri) dan Neoxr Bot (kanan) -->
-                    <div class="script-row">
-                        <div class="script-card">
-                            <h2 class="script-title"><i class="fas fa-code"></i> Script Bot WhatsApp Hitori MD</h2>
-                            <p class="script-description">Bot WhatsApp multifungsi dengan fitur lengkap untuk kebutuhan sehari-hari.</p>
-                            <div class="script-features">
-                                <ul class="feature-list">
-                                    <li>Fitur lengkap dan update terbaru</li>
-                                    <li>Support berbagai platform</li>
-                                    <li>Dokumentasi lengkap</li>
-                                </ul>
+                            
+                            <div class="community-card">
+                                <div class="community-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3>Grup WhatsApp</h3>
+                                <p>Diskusi dan bantuan penggunaan script</p>
+                                <a href="https://chat.whatsapp.com/EcsB9NO95JmIZr8RrQ2heD" class="community-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Join Grup
+                                </a>
                             </div>
-                            <a href="https://sfile.mobi/8XBcW0YawEa" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Hitori MD</a>
-                        </div>
-                        
-                        <div class="script-card">
-                            <h2 class="script-title"><i class="fas fa-star"></i> Script Bot Neoxr Bot WhatsApp</h2>
-                            <p class="script-description">Bot WhatsApp dengan performa tinggi dan fitur modern untuk pengalaman terbaik.</p>
-                            <div class="script-features">
-                                <ul class="feature-list">
-                                    <li>Performa tinggi dan stabil</li>
-                                    <li>Fitur modern dan update berkala</li>
-                                    <li>Dukungan komunitas aktif</li>
-                                </ul>
+                            
+                            <div class="community-card">
+                                <div class="community-icon">
+                                    <i class="fab fa-youtube"></i>
+                                </div>
+                                <h3>YouTube Channel</h3>
+                                <p>Tutorial dan demo penggunaan script</p>
+                                <a href="https://youtube.com/@septiyandaputra3957" class="community-btn" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i> Subscribe
+                                </a>
                             </div>
-                            <a href="https://sfile.mobi/8IPcOo1k2cc" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Neoxr Bot</a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="share-section" id="share">
-                    <h3 class="share-title">Bantu Sebarkan!</h3>
-                    <p>Jika script ini bermanfaat, bantu sebarkan ke teman-teman Anda.</p>
-                    <div class="share-buttons">
-                        <a href="#" class="share-btn" id="shareWhatsApp"><i class="fab fa-whatsapp"></i> Share via WhatsApp</a>
-                        <a href="#" class="share-btn" id="shareTelegram"><i class="fab fa-telegram"></i> Share via Telegram</a>
-                        <a href="#" class="share-btn" id="copyLink"><i class="fas fa-link"></i> Copy Link</a>
+                <!-- Share Section -->
+                <div class="tab-content" id="share">
+                    <div class="share-section">
+                        <h3 class="share-title">Bantu Sebarkan!</h3>
+                        <p>Jika script ini bermanfaat, bantu sebarkan ke teman-teman Anda.</p>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn" id="shareWhatsApp"><i class="fab fa-whatsapp"></i> Share via WhatsApp</a>
+                            <a href="#" class="share-btn" id="shareTelegram"><i class="fab fa-telegram"></i> Share via Telegram</a>
+                            <a href="#" class="share-btn" id="copyLink"><i class="fas fa-link"></i> Copy Link</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -979,6 +887,9 @@
             // Setup sidebar toggle untuk mobile
             setupSidebar();
             
+            // Setup tab system
+            setupTabs();
+            
             // Animasi untuk tombol download
             document.querySelectorAll('.download-btn').forEach(button => {
                 button.addEventListener('click', function(e) {
@@ -1030,7 +941,6 @@
         function setupSidebar() {
             const sidebar = document.getElementById('sidebar');
             const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
             
             // Toggle sidebar on mobile
             sidebarToggle.addEventListener('click', function() {
@@ -1038,29 +948,34 @@
             });
             
             // Close sidebar when clicking on a link (mobile)
-            sidebarLinks.forEach(link => {
+            document.querySelectorAll('.sidebar-menu a').forEach(link => {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
                         sidebar.classList.remove('active');
                     }
                 });
             });
+        }
+
+        // ==================== TAB SYSTEM ====================
+        function setupTabs() {
+            const tabLinks = document.querySelectorAll('.tab-link');
+            const tabContents = document.querySelectorAll('.tab-content');
             
-            // Smooth scroll for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+            tabLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
+                    // Remove active class from all tabs
+                    tabLinks.forEach(tab => tab.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
                     
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
                 });
             });
         }
