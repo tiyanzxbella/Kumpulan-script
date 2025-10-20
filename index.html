@@ -1,984 +1,399 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TiyanzxScript - Koleksi Script Bot WhatsApp Terlengkap</title>
-    <meta name="description" content="TiyanzxScript - Kumpulan script bot WhatsApp terbaik: Bella AI, Hitori MD, Neoxr Bot. Support VPS, Panel dan Termux. Download gratis sekarang!">
-    
-    <!-- SEO Meta Tags -->
-    <meta property="og:title" content="TiyanzxScript - Koleksi Script Bot WhatsApp Terlengkap">
-    <meta property="og:description" content="Download script bot WhatsApp: Bella AI, Hitori MD, Neoxr Bot. Support VPS, Panel dan Termux">
-    <meta property="og:image" content="https://files.catbox.moe/tw90hl.png">
-    <meta property="og:url" content="https://yourwebsite.com">
-    <meta property="og:type" content="website">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TiyanzxScript - Koleksi Script Bot WhatsApp Terlengkap">
-    <meta name="twitter:description" content="Download script bot WhatsApp: Bella AI, Hitori MD, Neoxr Bot">
-    <meta name="twitter:image" content="https://files.catbox.moe/tw90hl.png">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary-color: #8A2BE2;
-            --secondary-color: #4CAF50;
-            --accent-color: #9C27B0;
-            --text-color: #f0f0f0;
-            --bg-color: #0A0A0A;
-            --card-bg: rgba(20, 20, 30, 0.9);
-            --header-bg: rgba(0, 0, 0, 0.9);
-            --footer-bg: rgba(0, 0, 0, 0.9);
-            --sidebar-bg: rgba(20, 20, 30, 0.9);
-            --sidebar-text: #D1C4E9;
-            --sidebar-active: #6A1B9A;
-            --sidebar-hover: #1a1a2a;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            --card-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            color: var(--text-color);
-            min-height: 100vh;
-            background: var(--bg-color);
-            position: relative;
-            overflow-x: hidden;
-            display: flex;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TiyanzxScript - Koleksi Script Bot WhatsApp</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* === RESET & THEME === */
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;}
+:root {
+  --primary:#25D366;
+  --accent:#128C7E;
+  --bg-dark:rgba(10,10,10,0.8);
+  --card-bg:rgba(30,30,30,0.6);
+  --text:#f5f5f5;
+}
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  overflow-x: hidden;
+}
 
-        /* Video Background */
-        .video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-        
-        .video-background video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-        }
+/* === VIDEO BACKGROUND === */
+.video-bg {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -2; overflow: hidden;
+}
+.video-bg video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.overlay {
+  position: fixed;
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: -1;
+}
 
-        /* ==================== SIDEBAR ==================== */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
-            padding: 20px 0;
-            position: fixed;
-            left: 0;
-            top: 0;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
+/* === SIDEBAR === */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 250px; height: 100%;
+  background: rgba(20,20,20,0.85);
+  backdrop-filter: blur(10px);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  padding-top: 70px;
+  z-index: 999;
+  overflow-y: auto;
+}
+.sidebar.active {transform: translateX(0);}
+.sidebar a {
+  display:block;
+  padding:15px 25px;
+  color:white;
+  text-decoration:none;
+  font-size:1.1rem;
+  transition:background 0.3s;
+}
+.sidebar a:hover {background:rgba(255,255,255,0.1);}
+.sidebar i {margin-right:10px;width:20px;text-align:center;}
 
-        .sidebar-header {
-            text-align: center;
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 20px;
-        }
+/* === MENU BUTTON === */
+.menu-btn {
+  position: fixed;
+  top:15px;left:15px;
+  background:rgba(30,30,30,0.8);
+  color:white;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
+  z-index:1000;
+}
+.menu-btn:hover {background:var(--accent);}
 
-        .profile-picture {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 15px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            padding: 5px;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-        }
-        
-        .profile-picture img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #151520;
-        }
+/* === HEADER === */
+header {
+  text-align:center;
+  padding:90px 20px 40px;
+}
+header .site-title {
+  font-size:2.8rem;
+  color:var(--primary);
+  text-shadow:0 0 10px rgba(37,211,102,0.6);
+}
+header .subtitle {
+  opacity:0.8;
+  font-size:1.1rem;
+}
 
-        .sidebar-header h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: var(--primary-color);
-        }
+/* === SECTION === */
+.section {
+  background:var(--card-bg);
+  margin:25px;
+  border-radius:15px;
+  padding:30px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
 
-        .sidebar-menu {
-            list-style: none;
-        }
+/* === SCRIPTS === */
+.script-list {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:25px;
+}
+.script-card {
+  background:rgba(40,40,40,0.6);
+  border-radius:12px;
+  padding:25px;
+  border-top:5px solid var(--primary);
+  transition:transform 0.3s;
+}
+.script-card:hover {transform:scale(1.02);}
+.script-title {
+  color:var(--primary);
+  font-size:1.3rem;
+  margin-bottom:10px;
+}
+.script-description {opacity:0.9;margin-bottom:15px;}
+.download-btn {
+  display:inline-block;
+  background:var(--primary);
+  color:black;
+  padding:12px 25px;
+  border-radius:50px;
+  text-decoration:none;
+  font-weight:bold;
+}
 
-        .sidebar-menu li {
-            margin-bottom: 5px;
-        }
+/* === KOMUNITAS DI SIDEBAR === */
+.sidebar-section {
+  padding: 15px 25px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.sidebar-section h3 {
+  color: var(--primary);
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+.community-links-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.community-link-sidebar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.3s;
+  font-size: 0.9rem;
+}
+.community-link-sidebar:hover {
+  background: rgba(255,255,255,0.1);
+}
+.community-link-sidebar i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
 
-        .sidebar-menu a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: inherit;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
+/* === SHARE SECTION === */
+.share-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.share-link {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.3s;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.share-link:hover {
+  background: rgba(255,255,255,0.1);
+}
+.share-link i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
 
-        .sidebar-menu a:hover {
-            background-color: var(--sidebar-hover);
-        }
+/* === TOAST NOTIFICATION === */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--primary);
+  color: black;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1001;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
 
-        .sidebar-menu a.active {
-            background-color: var(--sidebar-hover);
-            border-left: 4px solid var(--sidebar-active);
-            font-weight: 600;
-        }
+/* === RESPONSIVE === */
+@media (max-width:768px){
+  .script-list {grid-template-columns:repeat(2,1fr);}
+  .script-card {font-size:0.95rem;}
+}
 
-        .sidebar-menu i {
-            margin-right: 10px;
-            font-size: 1.2em;
-            width: 24px;
-            text-align: center;
-            color: var(--secondary-color);
-        }
-
-        .sidebar-toggle {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1100;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .sidebar-toggle:hover {
-            transform: scale(1.1);
-            background-color: var(--accent-color);
-        }
-
-        /* ==================== MAIN CONTENT ==================== */
-        .main-content {
-            margin-left: 250px;
-            flex: 1;
-            padding: 20px;
-            transition: margin-left 0.3s ease;
-        }
-
-        /* ==================== TOP BAR ==================== */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 30px;
-            background-color: var(--header-bg);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            border-radius: 10px;
-            margin-bottom: 30px;
-        }
-        
-        .top-bar-center {
-            flex-grow: 1;
-            text-align: center;
-        }
-        
-        .profile-name {
-            font-size: 1.5em;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(138, 43, 226, 0.3);
-        }
-        
-        .real-time-clock {
-            font-size: 1.2em;
-            font-weight: 600;
-            letter-spacing: 1px;
-            background: linear-gradient(45deg, var(--secondary-color), #388E3C);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* ==================== KONTEN UTAMA ==================== */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background-color: rgba(30, 30, 30, 0.7);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            position: relative;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: auto auto auto auto;
-            grid-template-areas: 
-                "header"
-                "content"
-                "footer";
-            gap: 20px;
-        }
-        
-        header {
-            background: linear-gradient(to right, rgba(138, 43, 226, 0.8), rgba(76, 175, 80, 0.8));
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            grid-area: header;
-        }
-        
-        .brand {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        
-        .logo {
-            font-size: 3rem;
-            margin-right: 20px;
-        }
-        
-        .site-title {
-            font-size: 3.5rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            font-weight: normal;
-        }
-        
-        .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .content {
-            padding: 40px;
-            grid-area: content;
-        }
-        
-        /* Tab Content */
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        /* Script Bot Content */
-        .script-list {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            padding: 0;
-        }
-        
-        .script-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .script-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
-            padding: 30px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 5px solid var(--primary-color);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .script-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .script-title {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .script-title i {
-            margin-right: 12px;
-            font-size: 1.3rem;
-        }
-        
-        .script-description {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            flex-grow: 1;
-            font-size: 1.05rem;
-        }
-        
-        .script-features {
-            margin-bottom: 25px;
-        }
-        
-        .feature-list {
-            list-style-type: none;
-            padding-left: 5px;
-        }
-        
-        .feature-list li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-        }
-        
-        .feature-list li:before {
-            content: "✓";
-            color: var(--primary-color);
-            font-weight: bold;
-            margin-right: 10px;
-            font-size: 1.1rem;
-        }
-        
-        .download-btn {
-            display: inline-block;
-            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            width: 100%;
-            margin-top: auto;
-            position: relative;
-            overflow: hidden;
-            font-size: 1.1rem;
-        }
-        
-        .download-btn:hover {
-            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
-            transform: scale(1.03);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .download-btn i {
-            margin-right: 10px;
-        }
-        
-        /* Community Content */
-        .community-section {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .community-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .community-title i {
-            margin-right: 15px;
-        }
-        
-        .community-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 25px;
-        }
-        
-        .community-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-        
-        .community-card:hover {
-            transform: translateY(-8px);
-        }
-        
-        .community-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .community-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            font-size: 1.4rem;
-        }
-        
-        .community-card p {
-            margin-bottom: 20px;
-            color: var(--text-color);
-            opacity: 0.8;
-            font-size: 1rem;
-        }
-        
-        .community-btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s;
-            font-size: 1rem;
-        }
-        
-        .community-btn:hover {
-            background: var(--accent-color);
-            transform: scale(1.05);
-        }
-        
-        /* Share Content */
-        .share-section {
-            text-align: center;
-            padding: 30px;
-            background: var(--card-bg);
-            border-radius: 15px;
-        }
-        
-        .share-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        
-        .share-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .share-btn {
-            padding: 12px 25px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            transition: background 0.3s;
-            font-size: 1rem;
-        }
-        
-        .share-btn:hover {
-            background: var(--accent-color);
-        }
-        
-        footer {
-            text-align: center;
-            padding: 25px;
-            background-color: var(--footer-bg);
-            color: var(--text-color);
-            opacity: 0.8;
-            font-size: 1rem;
-            grid-area: footer;
-            border-radius: 0 0 15px 15px;
-        }
-
-        /* Loading Animation */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        
-        .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-top: 8px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .hidden {
-            display: none;
-        }
-
-        /* ==================== MEDIA QUERIES ==================== */
-        @media (max-width: 1024px) {
-            .script-row {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .sidebar {
-                width: 250px;
-                transform: translateX(-100%);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-            }
-            
-            .sidebar-toggle {
-                display: flex;
-            }
-
-            .site-title {
-                font-size: 2.5rem;
-            }
-            
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .share-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .share-btn {
-                width: 220px;
-                justify-content: center;
-            }
-            
-            .community-links {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 10px;
-            }
-            
-            .content {
-                padding: 25px;
-            }
-            
-            .brand {
-                flex-direction: column;
-            }
-            
-            .logo {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            
-            .community-section, .share-section {
-                margin: 0;
-            }
-            
-            .script-list {
-                padding: 0;
-            }
-        }
-    </style>
+/* === FOOTER === */
+footer {
+  text-align:center;
+  padding:25px;
+  opacity:0.7;
+  font-size:0.9rem;
+}
+</style>
 </head>
 <body>
-    <!-- Video Background -->
-    <div class="video-background">
-        <video id="bgVideo" loop muted autoplay>
-            <source src="https://files.catbox.moe/0mhw9o.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+
+<!-- VIDEO BACKGROUND -->
+<div class="video-bg">
+  <video id="bgVideo" autoplay muted loop>
+    <source src="https://files.catbox.moe/0mhw9o.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="overlay"></div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast"></div>
+
+<!-- SIDEBAR -->
+<div class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
+<div class="sidebar" id="sidebar">
+  <a href="#script"><i class="fas fa-code"></i> Script</a>
+  
+  <!-- Komunitas Section -->
+  <div class="sidebar-section">
+    <h3>Komunitas</h3>
+    <div class="community-links-sidebar">
+      <a href="https://whatsapp.com/channel/0029VbBNmBPISTkPhc6Kay3B" target="_blank" class="community-link-sidebar">
+        <i class="fab fa-whatsapp"></i> Channel WhatsApp
+      </a>
+      <a href="https://chat.whatsapp.com/EcsB9NO95JmIZr8RrQ2heD" target="_blank" class="community-link-sidebar">
+        <i class="fas fa-comments"></i> Grup Diskusi
+      </a>
+      <a href="https://youtube.com/@septiyandaputra3957" target="_blank" class="community-link-sidebar">
+        <i class="fab fa-youtube"></i> Channel YouTube
+      </a>
     </div>
-    <div class="overlay"></div>
-    
-    <!-- Loading Animation -->
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-spinner"></div>
+  </div>
+  
+  <!-- Share Section -->
+  <div class="sidebar-section">
+    <h3>Share Website</h3>
+    <div class="share-links">
+      <a href="#" class="share-link" id="shareWhatsApp">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="#" class="share-link" id="shareTelegram">
+        <i class="fab fa-telegram"></i> Telegram
+      </a>
+      <a href="#" class="share-link" id="shareFacebook">
+        <i class="fab fa-facebook"></i> Facebook
+      </a>
+      <a href="#" class="share-link" id="copyLink">
+        <i class="fas fa-link"></i> Salin Link
+      </a>
     </div>
+  </div>
+</div>
 
-    <!-- Sidebar Menu -->
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="profile-picture">
-                <img src="https://files.catbox.moe/yi6lsr.jpg" alt="Profile Tiyan">
-            </div>
-            <h2>TiyanzxScript</h2>
-            <p>Koleksi Script Bot WhatsApp</p>
-        </div>
-        <ul class="sidebar-menu">
-            <li><a href="#script-bot" class="active tab-link" data-tab="script-bot"><i class="fas fa-code"></i> Script Bot</a></li>
-            <li><a href="#community" class="tab-link" data-tab="community"><i class="fas fa-users"></i> Komunitas</a></li>
-            <li><a href="#share" class="tab-link" data-tab="share"><i class="fas fa-share-alt"></i> Bagikan</a></li>
-            <li><a href="https://github.com/tiyanzxbella/" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
-            <li><a href="https://youtube.com/@septiyandaputra3957" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></li>
-            <li><a href="https://instagram.com/septiyanda_putra" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-            <li><a href="https://wa.me/6285972533957" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-        </ul>
+<header>
+  <h1 class="site-title">TiyanzxScript</h1>
+  <p class="subtitle">Koleksi Script Bot WhatsApp — Mode Gelap Transparan</p>
+</header>
+
+<!-- SCRIPTS -->
+<section class="section" id="script">
+  <h2><i class="fas fa-code"></i> Script Bot WhatsApp</h2>
+  <div class="script-list">
+    <div class="script-card">
+      <h3 class="script-title"><i class="fas fa-robot"></i> Bella AI</h3>
+      <p class="script-description">Bot AI WhatsApp dengan fitur pintar otomatis.</p>
+      <a href="https://sfile.mobi/30f9DoV8EM4" target="_blank" class="download-btn">Download</a>
     </div>
-
-    <button class="sidebar-toggle" id="sidebarToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Main Content -->
-    <div class="main-content" id="mainContent">
-        <!-- Top Bar -->
-        <div class="top-bar">
-            <div class="top-bar-center">
-                <div class="profile-name">TiyanzxScript</div>
-            </div>
-            <div class="real-time-clock" id="realTimeClock"></div>
-        </div>
-
-        <div class="container">
-            <header>
-                <div class="brand">
-                    <div class="logo">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="site-title">TiyanzxScript</div>
-                </div>
-                <h1>Koleksi Script Bot WhatsApp Terlengkap</h1>
-                <p class="subtitle">Support VPS, Panel, dan Termux - Bergabunglah dengan komunitas kami untuk info terbaru!</p>
-            </header>
-            
-            <div class="content">
-                <!-- Script Bot Section -->
-                <div class="tab-content active" id="script-bot">
-                    <div class="script-list">
-                        <!-- Baris 1: Telegram Bot (kiri) dan Bella AI (kanan) -->
-                        <div class="script-row">
-                            <div class="script-card">
-                                <h2 class="script-title"><i class="fab fa-telegram"></i> Script Base Telegram Bot</h2>
-                                <p class="script-description">Base script untuk membuat bot Telegram yang dapat diintegrasikan dengan WhatsApp.</p>
-                                <div class="script-features">
-                                    <ul class="feature-list">
-                                        <li>Base untuk pengembangan bot Telegram</li>
-                                        <li>Integrasi dengan WhatsApp</li>
-                                        <li>Struktur kode yang terorganisir</li>
-                                    </ul>
-                                </div>
-                                <a href="https://sfile.mobi/8u3cFlKpGMZ" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Base Telegram Bot</a>
-                            </div>
-                            
-                            <div class="script-card">
-                                <h2 class="script-title"><i class="fas fa-robot"></i> Script Bot Bella AI</h2>
-                                <p class="script-description">Bot WhatsApp canggih dengan kecerdasan buatan untuk berbagai keperluan otomatisasi.</p>
-                                <div class="script-features">
-                                    <ul class="feature-list">
-                                        <li>Support VPS, Panel, dan Termux</li>
-                                        <li>Fitur AI untuk respon cerdas</li>
-                                        <li>Multi-fungsi dan mudah dikustomisasi</li>
-                                    </ul>
-                                </div>
-                                <a href="https://sfile.mobi/30f9DoV8EM4" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Bella AI</a>
-                            </div>
-                        </div>
-                        
-                        <!-- Baris 2: Hitori MD (kiri) dan Neoxr Bot (kanan) -->
-                        <div class="script-row">
-                            <div class="script-card">
-                                <h2 class="script-title"><i class="fas fa-code"></i> Script Bot WhatsApp Hitori MD</h2>
-                                <p class="script-description">Bot WhatsApp multifungsi dengan fitur lengkap untuk kebutuhan sehari-hari.</p>
-                                <div class="script-features">
-                                    <ul class="feature-list">
-                                        <li>Fitur lengkap dan update terbaru</li>
-                                        <li>Support berbagai platform</li>
-                                        <li>Dokumentasi lengkap</li>
-                                    </ul>
-                                </div>
-                                <a href="https://sfile.mobi/8XBcW0YawEa" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Hitori MD</a>
-                            </div>
-                            
-                            <div class="script-card">
-                                <h2 class="script-title"><i class="fas fa-star"></i> Script Bot Neoxr Bot WhatsApp</h2>
-                                <p class="script-description">Bot WhatsApp dengan performa tinggi dan fitur modern untuk pengalaman terbaik.</p>
-                                <div class="script-features">
-                                    <ul class="feature-list">
-                                        <li>Performa tinggi dan stabil</li>
-                                        <li>Fitur modern dan update berkala</li>
-                                        <li>Dukungan komunitas aktif</li>
-                                    </ul>
-                                </div>
-                                <a href="https://sfile.mobi/8IPcOo1k2cc" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Script Neoxr Bot</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Community Section -->
-                <div class="tab-content" id="community">
-                    <div class="community-section">
-                        <h2 class="community-title"><i class="fas fa-users"></i> Bergabung dengan Komunitas</h2>
-                        <p>Dapatkan informasi terbaru tentang update script, tutorial, dan bantuan dari komunitas</p>
-                        
-                        <div class="community-links">
-                            <div class="community-card">
-                                <div class="community-icon">
-                                    <i class="fab fa-whatsapp"></i>
-                                </div>
-                                <h3>Channel WhatsApp</h3>
-                                <p>Update script terbaru dan informasi penting</p>
-                                <a href="https://whatsapp.com/channel/0029VbBNmBPISTkPhc6Kay3B" class="community-btn" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i> Join Channel
-                                </a>
-                            </div>
-                            
-                            <div class="community-card">
-                                <div class="community-icon">
-                                    <i class="fas fa-comments"></i>
-                                </div>
-                                <h3>Grup WhatsApp</h3>
-                                <p>Diskusi dan bantuan penggunaan script</p>
-                                <a href="https://chat.whatsapp.com/EcsB9NO95JmIZr8RrQ2heD" class="community-btn" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i> Join Grup
-                                </a>
-                            </div>
-                            
-                            <div class="community-card">
-                                <div class="community-icon">
-                                    <i class="fab fa-youtube"></i>
-                                </div>
-                                <h3>YouTube Channel</h3>
-                                <p>Tutorial dan demo penggunaan script</p>
-                                <a href="https://youtube.com/@septiyandaputra3957" class="community-btn" target="_blank">
-                                    <i class="fas fa-external-link-alt"></i> Subscribe
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Share Section -->
-                <div class="tab-content" id="share">
-                    <div class="share-section">
-                        <h3 class="share-title">Bantu Sebarkan!</h3>
-                        <p>Jika script ini bermanfaat, bantu sebarkan ke teman-teman Anda.</p>
-                        <div class="share-buttons">
-                            <a href="#" class="share-btn" id="shareWhatsApp"><i class="fab fa-whatsapp"></i> Share via WhatsApp</a>
-                            <a href="#" class="share-btn" id="shareTelegram"><i class="fab fa-telegram"></i> Share via Telegram</a>
-                            <a href="#" class="share-btn" id="copyLink"><i class="fas fa-link"></i> Copy Link</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <footer>
-                <p>© 2023 TiyanzxScript - Koleksi Script Bot WhatsApp. Semua script disediakan oleh komunitas developer.</p>
-            </footer>
-        </div>
+    <div class="script-card">
+      <h3 class="script-title"><i class="fab fa-telegram"></i> Base Telegram</h3>
+      <p class="script-description">Bot dasar Telegram integrasi WhatsApp.</p>
+      <a href="https://sfile.mobi/8u3cFlKpGMZ" target="_blank" class="download-btn">Download</a>
     </div>
+    <div class="script-card">
+      <h3 class="script-title"><i class="fas fa-code"></i> Hitori MD</h3>
+      <p class="script-description">Bot multifungsi dan mudah dikustomisasi.</p>
+      <a href="https://sfile.mobi/8XBcW0YawEa" target="_blank" class="download-btn">Download</a>
+    </div>
+    <div class="script-card">
+      <h3 class="script-title"><i class="fas fa-star"></i> Neoxr Bot</h3>
+      <p class="script-description">Bot stabil dengan performa tinggi.</p>
+      <a href="https://sfile.mobi/8IPcOo1k2cc" target="_blank" class="download-btn">Download</a>
+    </div>
+  </div>
+</section>
 
-    <script>
-        // Video Controls
-        const bgVideo = document.getElementById('bgVideo');
+<footer>
+  <p>© 2025 TiyanzxScript — All Rights Reserved</p>
+</footer>
 
-        // Setup video untuk otomatis diputar
-        bgVideo.muted = true;
-        bgVideo.volume = 0.5;
-        
-        // Coba putar video secara otomatis
-        function playVideo() {
-            bgVideo.play().catch(e => {
-                console.log("Autoplay prevented, waiting for user interaction");
-            });
-        }
-        
-        // Coba putar video saat halaman dimuat
-        playVideo();
-        
-        // Coba putar video saat ada interaksi pengguna
-        document.addEventListener('click', function() {
-            playVideo();
-            bgVideo.muted = false;
-        });
-        
-        document.addEventListener('scroll', function() {
-            playVideo();
-            bgVideo.muted = false;
-        });
+<script>
+// === SIDEBAR TOGGLE ===
+const menuBtn = document.getElementById('menuBtn');
+const sidebar = document.getElementById('sidebar');
+menuBtn.addEventListener('click', ()=>sidebar.classList.toggle('active'));
 
-        // Loading animation saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', function() {
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            
-            // Tampilkan loading selama 1 detik
-            setTimeout(function() {
-                loadingOverlay.style.opacity = '0';
-                setTimeout(function() {
-                    loadingOverlay.classList.add('hidden');
-                }, 500);
-            }, 1000);
-            
-            // Setup jam real-time
-            updateRealTimeClock();
-            
-            // Setup sidebar toggle untuk mobile
-            setupSidebar();
-            
-            // Setup tab system
-            setupTabs();
-            
-            // Animasi untuk tombol download
-            document.querySelectorAll('.download-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    // Hanya tambah animasi jika bukan link eksternal
-                    if (this.getAttribute('href').startsWith('https://')) {
-                        this.classList.add('btn-loading');
-                        this.innerHTML = '<i class="fas fa-spinner"></i> Mengarahkan...';
-                        
-                        setTimeout(() => {
-                            this.classList.remove('btn-loading');
-                            this.innerHTML = '<i class="fas fa-download"></i> Download Berhasil';
-                        }, 1000);
-                    }
-                });
-            });
-            
-            // Fungsi untuk tombol share
-            document.getElementById('shareWhatsApp').addEventListener('click', function(e) {
-                e.preventDefault();
-                const text = "Lihat koleksi script bot WhatsApp terbaik di TiyanzxScript!";
-                const url = window.location.href;
-                window.open(`https://wa.me/?text=${encodeURIComponent(text + " " + url)}`, '_blank');
-            });
-            
-            document.getElementById('shareTelegram').addEventListener('click', function(e) {
-                e.preventDefault();
-                const text = "Lihat koleksi script bot WhatsApp terbaik di TiyanzxScript!";
-                const url = window.location.href;
-                window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
-            });
-            
-            document.getElementById('copyLink').addEventListener('click', function(e) {
-                e.preventDefault();
-                navigator.clipboard.writeText(window.location.href).then(function() {
-                    alert('Link TiyanzxScript berhasil disalin!');
-                });
-            });
-        });
+// === VIDEO AUDIO HANDLER ===
+const bgVideo = document.getElementById('bgVideo');
+function enableAudio() {
+  bgVideo.muted = false;
+  bgVideo.volume = 0.6;
+  bgVideo.play().catch(err=>console.log(err));
+}
+document.addEventListener('click', enableAudio, {once:true});
 
-        // ==================== FUNGSI JAM REAL-TIME ====================
-        function updateRealTimeClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            document.getElementById('realTimeClock').textContent = timeString;
-            setTimeout(updateRealTimeClock, 1000);
-        }
+// === SHARE FUNCTIONALITY ===
+const shareWhatsApp = document.getElementById('shareWhatsApp');
+const shareTelegram = document.getElementById('shareTelegram');
+const shareFacebook = document.getElementById('shareFacebook');
+const copyLink = document.getElementById('copyLink');
+const toast = document.getElementById('toast');
 
-        // ==================== SIDEBAR FUNCTIONALITY ====================
-        function setupSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            
-            // Toggle sidebar on mobile
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-            });
-            
-            // Close sidebar when clicking on a link (mobile)
-            document.querySelectorAll('.sidebar-menu a').forEach(link => {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        sidebar.classList.remove('active');
-                    }
-                });
-            });
-        }
+const siteUrl = window.location.href;
+const siteTitle = document.title;
 
-        // ==================== TAB SYSTEM ====================
-        function setupTabs() {
-            const tabLinks = document.querySelectorAll('.tab-link');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove active class from all tabs
-                    tabLinks.forEach(tab => tab.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to clicked tab
-                    this.classList.add('active');
-                    
-                    // Show corresponding content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
-        }
-    </script>
+// WhatsApp Share
+shareWhatsApp.addEventListener('click', function(e) {
+  e.preventDefault();
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(siteTitle + ' - ' + siteUrl)}`;
+  window.open(url, '_blank');
+  showToast('Membuka WhatsApp untuk berbagi...');
+});
+
+// Telegram Share
+shareTelegram.addEventListener('click', function(e) {
+  e.preventDefault();
+  const url = `https://t.me/share/url?url=${encodeURIComponent(siteUrl)}&text=${encodeURIComponent(siteTitle)}`;
+  window.open(url, '_blank');
+  showToast('Membuka Telegram untuk berbagi...');
+});
+
+// Facebook Share
+shareFacebook.addEventListener('click', function(e) {
+  e.preventDefault();
+  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(siteUrl)}`;
+  window.open(url, '_blank');
+  showToast('Membuka Facebook untuk berbagi...');
+});
+
+// Copy Link
+copyLink.addEventListener('click', function(e) {
+  e.preventDefault();
+  navigator.clipboard.writeText(siteUrl).then(() => {
+    showToast('Link berhasil disalin!');
+  }).catch(err => {
+    console.error('Gagal menyalin: ', err);
+    showToast('Gagal menyalin link');
+  });
+});
+
+// Show Toast Notification
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Close sidebar when clicking outside
+document.addEventListener('click', function(e) {
+  if (!sidebar.contains(e.target) && !menuBtn.contains(e.target) && sidebar.classList.contains('active')) {
+    sidebar.classList.remove('active');
+  }
+});
+</script>
+
 </body>
 </html>
