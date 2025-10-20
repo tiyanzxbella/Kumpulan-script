@@ -1,0 +1,2 @@
+# Kumpulan-script
+Script bot 
