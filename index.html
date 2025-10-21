@@ -15,6 +15,9 @@
   --card-bg:rgba(30,30,30,0.6);
   --text:#f5f5f5;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   background: var(--bg-dark);
   color: var(--text);
@@ -100,6 +103,13 @@ header .subtitle {
   padding:30px;
   backdrop-filter:blur(10px);
   box-shadow:0 4px 12px rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* === SCRIPTS === */
@@ -114,6 +124,13 @@ header .subtitle {
   padding:10px;
   border-top:5px solid var(--primary);
   transition:transform 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s, opacity 0.5s ease;
+}
+.script-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 .script-card:hover {transform:scale(1.02);}
 .script-title {
@@ -129,18 +146,35 @@ header .subtitle {
   overflow: hidden;
   transition: max-height 0.5s ease;
   margin: 10px 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: max-height 0.5s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 .full-description.show {
   max-height: 500px;
+  opacity: 1;
+  transform: translateY(0);
 }
 .script-features {
   margin: 10px 0;
-  padding-left: 20px;
+  padding-left: 0;
 }
 .script-features li {
   margin-bottom: 8px;
   opacity: 0.9;
   line-height: 1.4;
+  list-style: none;
+  position: relative;
+  padding-left: 30px;
+}
+.script-features li:before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-size: 0.9rem;
 }
 .toggle-desc {
   display: inline-block;
@@ -166,6 +200,11 @@ header .subtitle {
   border-radius:50px;
   text-decoration:none;
   font-weight:bold;
+  transition: all 0.3s;
+}
+.download-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
 /* === KOMUNITAS DI SIDEBAR === */
@@ -253,12 +292,103 @@ header .subtitle {
   margin-left: 15px; /* Mengurangi margin kiri dari 25px menjadi 15px */
 }
 
+/* === WELCOME POPUP === */
+.welcome-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+.welcome-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+.popup-content {
+  background: var(--card-bg);
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(0.8);
+  transition: transform 0.5s;
+  border-top: 5px solid var(--primary);
+}
+.welcome-popup.active .popup-content {
+  transform: scale(1);
+}
+.popup-content h2 {
+  color: var(--primary);
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+.popup-content p {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+.popup-btn {
+  background: var(--primary);
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+.popup-btn:hover {
+  background: #1da851;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* === SCROLL TO TOP BUTTON === */
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: var(--primary);
+  color: black;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+.scroll-top:hover {
+  transform: translateY(-5px);
+}
+
 /* === RESPONSIVE === */
 @media (min-width: 769px) {
   /* Desktop: Selalu tampilkan deskripsi lengkap */
   .full-description {
     max-height: none;
     overflow: visible;
+    opacity: 1;
+    transform: none;
   }
   /* Sembunyikan tombol toggle di desktop */
   .toggle-desc {
@@ -292,6 +422,20 @@ footer {
 
 <!-- TOAST NOTIFICATION -->
 <div class="toast" id="toast"></div>
+
+<!-- WELCOME POPUP -->
+<div class="welcome-popup" id="welcomePopup">
+  <div class="popup-content">
+    <h2>Selamat Datang di TiyanzxScript!</h2>
+    <p>Selamat mendownload script bot WhatsApp berkualitas tinggi. Kami harap script yang kami sediakan dapat membantu pengembangan bot Anda.</p>
+    <button class="popup-btn" id="closePopup">Mulai Jelajahi</button>
+  </div>
+</div>
+
+<!-- SCROLL TO TOP BUTTON -->
+<div class="scroll-top" id="scrollTop">
+  <i class="fas fa-arrow-up"></i>
+</div>
 
 <!-- SIDEBAR -->
 <div class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
@@ -503,19 +647,94 @@ document.addEventListener('click', function(e) {
 });
 
 // === TOGGLE DESCRIPTION FOR MOBILE ===
+let currentlyOpenDesc = null;
+
 document.querySelectorAll('.toggle-desc').forEach(button => {
   button.addEventListener('click', function() {
     const targetId = this.getAttribute('data-target');
     const targetDesc = document.getElementById(targetId);
     
+    // Jika deskripsi yang diklik sudah terbuka, tutup saja
     if (targetDesc.classList.contains('show')) {
       targetDesc.classList.remove('show');
       this.textContent = 'Selengkapnya';
+      currentlyOpenDesc = null;
     } else {
+      // Tutup deskripsi yang sedang terbuka sebelumnya (jika ada)
+      if (currentlyOpenDesc) {
+        const prevDesc = document.getElementById(currentlyOpenDesc);
+        const prevButton = document.querySelector(`.toggle-desc[data-target="${currentlyOpenDesc}"]`);
+        
+        prevDesc.classList.remove('show');
+        if (prevButton) prevButton.textContent = 'Selengkapnya';
+      }
+      
+      // Buka deskripsi yang baru
       targetDesc.classList.add('show');
       this.textContent = 'Lebih Sedikit';
+      currentlyOpenDesc = targetId;
     }
   });
+});
+
+// === SCROLL ANIMATIONS ===
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// Observe sections and cards
+document.querySelectorAll('.section, .script-card').forEach(el => {
+  observer.observe(el);
+});
+
+// === SCROLL TO TOP FUNCTIONALITY ===
+const scrollTopBtn = document.getElementById('scrollTop');
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > 300) {
+    scrollTopBtn.classList.add('visible');
+  } else {
+    scrollTopBtn.classList.remove('visible');
+  }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
+
+// === WELCOME POPUP ===
+const welcomePopup = document.getElementById('welcomePopup');
+const closePopup = document.getElementById('closePopup');
+
+// Show popup on page load
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    welcomePopup.classList.add('active');
+  }, 1000);
+});
+
+// Close popup when button is clicked
+closePopup.addEventListener('click', () => {
+  welcomePopup.classList.remove('active');
+});
+
+// Close popup when clicking outside the content
+welcomePopup.addEventListener('click', (e) => {
+  if (e.target === welcomePopup) {
+    welcomePopup.classList.remove('active');
+  }
 });
 </script>
 
