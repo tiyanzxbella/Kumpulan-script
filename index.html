@@ -207,7 +207,7 @@ header .subtitle {
   box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
-/* === KOMUNITAS DI SIDEBAR === */
+/* === APLIKASI BIOSKOP DI SIDEBAR === */
 .sidebar-section {
   padding: 15px 25px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -217,6 +217,31 @@ header .subtitle {
   margin-bottom: 10px;
   font-size: 1rem;
 }
+.app-links-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.app-link-sidebar {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.3s;
+  font-size: 0.9rem;
+}
+.app-link-sidebar:hover {
+  background: rgba(255,255,255,0.1);
+}
+.app-link-sidebar i {
+  margin-right: 8px;
+  font-size: 1rem;
+}
+
+/* === KOMUNITAS DI SIDEBAR === */
 .community-links-sidebar {
   display: flex;
   flex-direction: column;
@@ -441,6 +466,22 @@ footer {
 <div class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></div>
 <div class="sidebar" id="sidebar">
   <a href="#script"><i class="fas fa-code"></i> Script</a>
+  
+  <!-- Aplikasi Bioskop Gratis Section -->
+  <div class="sidebar-section">
+    <h3>Aplikasi Bioskop Gratis</h3>
+    <div class="app-links-sidebar">
+      <a href="https://sfile.mobi/8u3iJ3jtM4y" target="_blank" class="app-link-sidebar">
+        <i class="fas fa-film"></i> CloudXStream
+      </a>
+      <a href="https://sfile.mobi/94Zj2JTfrys" target="_blank" class="app-link-sidebar">
+        <i class="fas fa-film"></i> NetMirror
+      </a>
+      <a href="https://sfile.mobi/7LJiiE9MFad" target="_blank" class="app-link-sidebar">
+        <i class="fas fa-film"></i> MovieBox
+      </a>
+    </div>
+  </div>
   
   <!-- Komunitas Section -->
   <div class="sidebar-section">
