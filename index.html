@@ -127,6 +127,7 @@ header .subtitle {
   opacity: 0;
   transform: translateY(20px);
   transition: transform 0.3s, opacity 0.5s ease;
+  cursor: pointer;
 }
 .script-card.visible {
   opacity: 1;
@@ -690,8 +691,23 @@ document.addEventListener('click', function(e) {
 // === TOGGLE DESCRIPTION FOR MOBILE ===
 let currentlyOpenDesc = null;
 
+// Fungsi untuk menutup semua deskripsi yang terbuka
+function closeAllDescriptions() {
+  document.querySelectorAll('.full-description.show').forEach(desc => {
+    desc.classList.remove('show');
+  });
+  
+  document.querySelectorAll('.toggle-desc').forEach(button => {
+    button.textContent = 'Selengkapnya';
+  });
+  
+  currentlyOpenDesc = null;
+}
+
 document.querySelectorAll('.toggle-desc').forEach(button => {
-  button.addEventListener('click', function() {
+  button.addEventListener('click', function(e) {
+    e.stopPropagation(); // Mencegah event bubbling ke card parent
+    
     const targetId = this.getAttribute('data-target');
     const targetDesc = document.getElementById(targetId);
     
@@ -702,19 +718,31 @@ document.querySelectorAll('.toggle-desc').forEach(button => {
       currentlyOpenDesc = null;
     } else {
       // Tutup deskripsi yang sedang terbuka sebelumnya (jika ada)
-      if (currentlyOpenDesc) {
-        const prevDesc = document.getElementById(currentlyOpenDesc);
-        const prevButton = document.querySelector(`.toggle-desc[data-target="${currentlyOpenDesc}"]`);
-        
-        prevDesc.classList.remove('show');
-        if (prevButton) prevButton.textContent = 'Selengkapnya';
-      }
+      closeAllDescriptions();
       
       // Buka deskripsi yang baru
       targetDesc.classList.add('show');
       this.textContent = 'Lebih Sedikit';
       currentlyOpenDesc = targetId;
     }
+  });
+});
+
+// Event listener untuk menutup deskripsi saat mengklik card script
+document.querySelectorAll('.script-card').forEach(card => {
+  card.addEventListener('click', function(e) {
+    // Jika mengklik tombol download, jangan tutup deskripsi
+    if (e.target.classList.contains('download-btn')) {
+      return;
+    }
+    
+    // Jika mengklik tombol toggle, biarkan handler tombol yang menanganinya
+    if (e.target.classList.contains('toggle-desc')) {
+      return;
+    }
+    
+    // Tutup semua deskripsi yang terbuka
+    closeAllDescriptions();
   });
 });
 
